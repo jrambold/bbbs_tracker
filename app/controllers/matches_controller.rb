@@ -1,6 +1,7 @@
 class MatchesController < ApplicationController
   def index
-
+    @user = User.find(params[:user_id])
+    @matches = @user.matches
   end
 
   def new

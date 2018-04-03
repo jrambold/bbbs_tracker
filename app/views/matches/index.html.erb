@@ -1,5 +1,12 @@
-<% @user.each do |user| %>
-  <%= user.name %>
-  <%= user.group %>
-  <br>
+<h1><%= @user.name %>'s Matches</h1>
+<ul>
+<% @matches.each do |match| %>
+  <li><%= link_to "Match #{match.id}", match.contacts %>
+    <ul>
+      <li>Little: <%= match.little %></li>
+      <li>Big: <%= match.big %></li>
+      <li>Guardian: <%= match.guardian %></li>
+    </ul>
+  </li>
 <% end %>
+</ul>
