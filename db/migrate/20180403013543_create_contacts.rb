@@ -4,6 +4,7 @@ class CreateContacts < ActiveRecord::Migration[5.1]
       t.string :type
       t.date :recent
       t.timestamps
+      t.references :match, foreign_key: true
     end
   end
 end
