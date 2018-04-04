@@ -22,15 +22,29 @@ class UsersController < ApplicationController
   end
 
   def edit
-
+    user = User.find(params:id)
+    if current_user == user
+      @user = user
+    else
+      flash[:error] = "You can only edit your own user!"
+      redirect_to user_path(user)
+    end
   end
 
   def update
-
-  end
-
-  def destroy
-
+    user = User.find(params[:id])
+    if current_user == user
+      user.update(user_params)
+      if user.save
+        flash[:success] = "#{user.name} updated!"
+        redirect_to user_path(user)
+      else
+        render :edit
+      end
+    else
+      flash[:error] = "You can only edit your own user!"
+      redirect_to user_path(user)
+    end
   end
 
   private
