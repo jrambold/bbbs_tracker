@@ -4,4 +4,5 @@ class User < ApplicationRecord
   has_secure_password
   has_many :matches
   has_many :user_contacts
+  enum group: ['default', 'teamlead', 'super', 'admin']
 end
