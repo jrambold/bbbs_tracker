@@ -1,1 +1,7 @@
-<%= @user.name %>
+<ul>
+  <li>Little: <%= @match.little %></li>
+  <li>Big: <%= @match.big %></li>
+  <li>Guardian: <%= @match.guardian %></li>
+</ul>
+<%= link_to "Edit", edit_match_path(@match) %>
+<%= link_to "Delete", match_path(@match), method: :delete %>

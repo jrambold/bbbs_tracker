@@ -1,9 +1,12 @@
-<%= form_for @user do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<%= form_for @match do |f| %>
+  <%= f.label :big %>
+  <%= f.text_field :big %>
 
-  <%= f.lable :group %>
-  <%= f.text_field :group %>
+  <%= f.label :little %>
+  <%= f.text_field :little %>
+
+  <%= f.label :guardian %>
+  <%= f.text_field :guardian %>
 
   <%= f.submit %>
 <% end %>

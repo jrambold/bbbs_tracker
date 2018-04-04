@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    user = User.find(params:id)
+    user = User.find(params[:id])
     if current_user == user
       @user = user
     else
