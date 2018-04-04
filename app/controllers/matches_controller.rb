@@ -19,7 +19,8 @@ class MatchesController < ApplicationController
     if current_user == user
       match = user.matches.new(match_params)
       if match.save
-        redirect_to user_matches_path(match.user)
+        match.create_contacts
+        redirect_to match_path(match)
       else
         render :new
       end
@@ -31,6 +32,7 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find(params[:id])
+    @contacts = @match.contacts
   end
 
   def edit
@@ -70,6 +72,6 @@ class MatchesController < ApplicationController
   private
 
   def match_params
-    params.require(:match).permit(:big, :little, :guardian)
+    params.require(:match).permit(:big, :little, :guardian, :start)
   end
 end

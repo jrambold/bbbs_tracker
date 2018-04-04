@@ -3,14 +3,6 @@ class ContactsController < ApplicationController
 
   end
 
-  def new
-
-  end
-
-  def create
-
-  end
-
   def show
 
   end
@@ -20,10 +12,6 @@ class ContactsController < ApplicationController
   end
 
   def update
-
-  end
-
-  def destroy
 
   end
 end

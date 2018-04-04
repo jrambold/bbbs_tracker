@@ -16,8 +16,13 @@ ActiveRecord::Schema.define(version: 20180403204212) do
   enable_extension "plpgsql"
 
   create_table "contacts", force: :cascade do |t|
-    t.string "type"
-    t.date "recent"
+    t.string "big_little"
+    t.date "contact_due"
+    t.string "person"
+    t.date "sor"
+    t.date "yos"
+    t.boolean "training"
+    t.date "driving"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "match_id"
@@ -28,6 +33,7 @@ ActiveRecord::Schema.define(version: 20180403204212) do
     t.text "big"
     t.text "little"
     t.text "guardian"
+    t.date "start"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"

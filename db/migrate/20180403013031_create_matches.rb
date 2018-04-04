@@ -4,6 +4,7 @@ class CreateMatches < ActiveRecord::Migration[5.1]
       t.text :big
       t.text :little
       t.text :guardian
+      t.date :start
       t.timestamps
     end
   end
