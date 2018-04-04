@@ -9,6 +9,14 @@
   </head>
 
   <body>
+    <nav>
+      <% if current_user %>
+        <%= link_to 'Log out', logout_path %>
+      <% else %>
+        <%= link_to 'Sign up to be a User', new_user_path %>
+        <%= link_to 'I already have an account', login_path %>
+      <% end %>
+    </nav>
     <%= yield %>
   </body>
 </html>
