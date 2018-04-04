@@ -8,9 +8,9 @@
 <%= link_to "Edit", edit_match_path(@match) %>
 <%= link_to "Delete", match_path(@match), method: :delete %>
 <br>
-<h3>Contacts</h3>
 <% @contacts.each do |contact| %>
   <% if contact.big_little == 'little'%>
+    <h3>Little Contact</h3>
     <ul>
       <li>Contact Person: <%= contact.person %></li>
       <li>Contact Due: <%= contact.contact_due %></li>
@@ -18,12 +18,37 @@
       <li>YOS Due: <%= contact.yos %></li>
     </ul>
   <% elsif contact.big_little == 'big' %>
+    <h3>Big Contact</h3>
     <ul>
-      <li>Contact Person: <%= contact.person %></li>
       <li>Contact Due: <%= contact.contact_due %></li>
       <li>SOR Due: <%= contact.sor %></li>
       <li>Training Complete: <%= contact.training %></li>
       <li>License and Insurance Update: <%= contact.driving %></li>
     </ul>
   <% end %>
+  <h4>Due this Month</h4>
+  <ul>
+    <% contact.due_by_month?(0).each do |due| %>
+      <li><%= due %></li>
+    <% end %>
+  </ul>
+  <h4>Due next Month</h4>
+  <ul>
+    <% contact.due_by_month?(1).each do |due| %>
+      <li><%= due %></li>
+    <% end %>
+  </ul>
+  <h4>Due in 2 Months</h4>
+  <ul>
+    <% contact.due_by_month?(2).each do |due| %>
+      <li><%= due %></li>
+    <% end %>
+  </ul>
+  <h4>Due in 3 Months</h4>
+  <ul>
+    <% contact.due_by_month?(12).each do |due| %>
+      <li><%= due %></li>
+    <% end %>
+  </ul>
+  <br>
 <% end %>

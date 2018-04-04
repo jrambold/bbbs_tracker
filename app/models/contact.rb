@@ -8,19 +8,19 @@ class Contact < ApplicationRecord
     check = (Date.today >> months_away)
     things = []
     if training_due?(check.mon)
-      things << :training
+      things << 'Training'
     end
     if contact_due?(check)
-      things << :contact_due
+      things << 'Check In'
     end
     if sor_due?(check)
-      things << :sor
+      things << 'SOR'
     end
     if yos_due?(check)
-      things << :yos
+      things << 'YOS'
     end
     if driving_due?(check)
-      things << :driving
+      things << 'License and Insurance'
     end
     if things.length == 0
       things = nil
@@ -49,27 +49,26 @@ class Contact < ApplicationRecord
   end
 
   def sor_due?(check)
-    if sor << 3 == match.start
-      check.mon >= sor.mon
+    if (sor << 3) == match.start
+      check.mon >= sor.mon || (check.year != match.start.year && check.mon == match.start.mon)
     else
-      check.mon == sor.mon
+      check.year >= sor.year && check.mon == sor.mon
     end
   end
 
   def yos_due?(check)
-    if sor << 3 == match.start
-      check.mon >= yos.mon
+    if (yos << 3) == match.start
+      check.mon >= yos.mon || (check.year != match.start.year && check.mon == match.start.mon)
     else
-      check.mon == yos.mon
+      check.year >= yos.year && check.mon == sor.mon
     end
   end
 
   def driving_due?(check)
-    check = check << 12
-    if check.year > driving.year
-      true
+    if check.year < driving.year
+      false
     else
-      check.mon > driving.mon
+      check.mon >= driving.mon
     end
   end
 
