@@ -10,14 +10,32 @@
 
   <body>
     <nav>
+      <div class="userbox">
+        <% if current_user %>
+          <%= current_user.name %>
+          <br>
+          <%= link_to "Logout #{current_user.username}", logout_path %>
+        <% else %>
+          <%= link_to 'Register', new_user_path %>
+          <%= link_to 'Sign In', login_path %>
+        <% end %>
+      </div>
+      <div class="title">
+        <h1>Big Brothers Big Sisters Contact Tracker</h1>
+      </div>
+      <div class="logo">
+        <%= link_to (image_tag "logo.png"), root_path %>
+      </div>
       <% if current_user %>
-        <%= current_user.name %>
-        <%= link_to "Logout #{current_user.username}", logout_path %>
-      <% else %>
-        <%= link_to 'Register', new_user_path %>
-        <%= link_to 'Sign In', login_path %>
+        <div class="navigation">
+          <%= link_to 'All Users', users_path %>
+          <%= link_to 'Profile', user_path(current_user) %>
+          <%= link_to 'Matches', user_matches_path(current_user) %>
+        </div>
       <% end %>
     </nav>
-    <%= yield %>
+    <div class="main">
+      <%= yield %>
+    </div>
   </body>
 </html>
