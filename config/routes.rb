@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   end
 
   resources :matches, only: [:show] do
-    resources :contacts, only: [:show, :edit, :update] do
-      resources :notes, only: [:new, :create]
+    resources :contacts, only: [:show, :edit, :update, :destroy] do
+      resources :notes, only: [:new, :create, :destroy]
     end
   end
 
