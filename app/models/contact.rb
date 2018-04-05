@@ -1,7 +1,7 @@
 class Contact < ApplicationRecord
   validates :big_little, :contact_due, :person, :sor, :yos, :driving, presence: true
   belongs_to :match
-  has_many :notes
+  has_many :notes, dependent: :destroy
   has_many :user_contacts
   has_many  :matches, through: :user_contacts
 
