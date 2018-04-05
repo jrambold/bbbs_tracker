@@ -3,6 +3,7 @@ class Contact < ApplicationRecord
   belongs_to :match
   has_many :notes
   has_many :user_contacts
+  has_many  :matches, through: :user_contacts
 
   def due_by_month?(months_away)
     check = (Date.today >> months_away)
