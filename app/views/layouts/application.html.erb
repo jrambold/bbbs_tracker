@@ -31,6 +31,9 @@
           <%= link_to 'All Users', users_path %>
           <%= link_to 'Profile', user_path(current_user) %>
           <%= link_to 'Matches', user_matches_path(current_user) %>
+          <%if current_admin? %>
+            <%= link_to 'Admin Console', admin_users %>
+          <% end %>
         </div>
       <% end %>
     </nav>
