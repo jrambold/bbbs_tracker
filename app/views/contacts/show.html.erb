@@ -18,12 +18,12 @@
 <%= link_to 'Update Contact', edit_match_contact_path(@contact.match,@contact) %>
 
 <h3>Notes</h3>
-<%= link_to 'Add Note', new_match_contact_comment_path(@contact.match,@contact) %>
+<%= link_to 'Add Note', new_match_contact_note_path(@contact.match,@contact) %>
 <table>
   <% @notes.each do |note| %>
   <tr>
-    <td>note.updated_at</td>
-    <td>note.comment</td>
+    <td><%= note.updated_at.to_date %></td>
+    <td><%= note.comment %></td>
   </tr>
   <% end %>
 </table>

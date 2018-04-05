@@ -11,7 +11,13 @@ class ContactsController < ApplicationController
   def update
     contact = Contact.find(params[:id])
     params[:contact] = contact.parse_update(params[:contact])
-    require 'pry'; binding.pry
+    contact.update(contact_params)
+    if contact.save
+      flash[:success] = "Contact updated!"
+      redirect_to new_match_contact_note_path(contact.match, contact.id)
+    else
+      render :edit
+    end
   end
 
   private

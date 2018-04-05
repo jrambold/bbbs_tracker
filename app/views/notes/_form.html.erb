@@ -1,9 +1,7 @@
-<%= form_for @user do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<%= form_for [@note.contact.match, @note.contact, @note] do |f| %>
 
-  <%= f.lable :group %>
-  <%= f.text_field :group %>
+  <%= f.label :comment %>
+  <%= f.text_area :comment %>
 
   <%= f.submit %>
 <% end %>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :matches, only: [:show] do
     resources :contacts, only: [:show, :edit, :update] do
-      resources :comments, only: [:new, :create]
+      resources :notes, only: [:new, :create]
     end
   end
 
