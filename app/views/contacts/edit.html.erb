@@ -1,3 +1,54 @@
-<h2>Edit <%= @user.name %> here!</h2>
+<h2>Update Contact here!</h2>
 
-<%= render partial: "form" %>
+<% if @contact.big_little == 'little'%>
+  <%= form_for [@contact.match,@contact] do |f| %>
+    <%= f.label :contact_date %>
+    <%= f.date_field :contact_due, value: Date.today %>
+    <br>
+    <%= f.submit %>
+    <br>
+  <% end %>
+  <%= form_for [@contact.match,@contact] do |f| %>
+    <%= f.label :SOR_Date %>
+    <%= f.date_field :sor, value: Date.today %>
+    <br>
+    <%= f.submit %>
+    <br>
+  <% end %>
+  <%= form_for [@contact.match,@contact] do |f| %>
+    <%= f.label :YOS_Date %>
+    <%= f.date_field :yos, value: Date.today %>
+    <br>
+    <%= f.submit %>
+    <br>
+  <% end %>
+<% elsif @contact.big_little == 'big' %>
+  <%= form_for [@contact.match,@contact] do |f| %>
+
+    <%= f.label :contact_date %>
+    <%= f.date_field :contact_due, value: Date.today %>
+    <br>
+    <%= f.submit %>
+    <br>
+  <% end %>
+  <%= form_for [@contact.match,@contact] do |f| %>
+    <%= f.label :sor_date %>
+    <%= f.date_field :sor, value: Date.today %>
+    <br>
+    <%= f.submit %>
+    <br>
+  <% end %>
+  <%= form_for [@contact.match,@contact] do |f| %>
+    <%= f.label :Training_Completed %>
+    <%= f.check_box :training %>
+    <br>
+    <%= f.submit %>
+    <br>
+  <% end %>
+  <%= form_for [@contact.match,@contact] do |f| %>
+    <%= f.label 'License and Insurance' %>
+    <%= f.date_field :driving, value: Date.today %>
+    <br>
+    <%= f.submit %>
+  <% end %>
+<% end %>

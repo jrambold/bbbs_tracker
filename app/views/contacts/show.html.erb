@@ -1,1 +1,29 @@
-<%= @user.name %>
+<% if @contact.big_little == 'little' %>
+  <h3>Little Contact</h3>
+  <ul>
+    <li>Contact Person: <%= @contact.person %></li>
+    <li>Contact Due: <%= @contact.contact_due %></li>
+    <li>SOR Due: <%= @contact.sor %></li>
+    <li>YOS Due: <%= @contact.yos %></li>
+  </ul>
+<% elsif @contact.big_little == 'big' %>
+  <h3>Big Contact</h3>
+  <ul>
+    <li>Contact Due: <%= @contact.contact_due %></li>
+    <li>SOR Due: <%= @contact.sor %></li>
+    <li>Training Complete: <%= @contact.training %></li>
+    <li>License and Insurance Update: <%= @contact.driving %></li>
+  </ul>
+<% end %>
+<%= link_to 'Update Contact', edit_match_contact_path(@contact.match,@contact) %>
+
+<h3>Notes</h3>
+<%= link_to 'Add Note', new_match_contact_comment_path(@contact.match,@contact) %>
+<table>
+  <% @notes.each do |note| %>
+  <tr>
+    <td>note.updated_at</td>
+    <td>note.comment</td>
+  </tr>
+  <% end %>
+</table>

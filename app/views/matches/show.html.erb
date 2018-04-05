@@ -10,7 +10,7 @@
 <br>
 <% @contacts.each do |contact| %>
   <% if contact.big_little == 'little'%>
-    <h3>Little Contact</h3>
+    <h3><%= link_to 'Little Contact', match_contact_path(@match,contact) %></h3>
     <ul>
       <li>Contact Person: <%= contact.person %></li>
       <li>Contact Due: <%= contact.contact_due %></li>
@@ -18,7 +18,7 @@
       <li>YOS Due: <%= contact.yos %></li>
     </ul>
   <% elsif contact.big_little == 'big' %>
-    <h3>Big Contact</h3>
+    <h3><%= link_to 'Big Contact', match_contact_path(@match,contact) %></h3>
     <ul>
       <li>Contact Due: <%= contact.contact_due %></li>
       <li>SOR Due: <%= contact.sor %></li>

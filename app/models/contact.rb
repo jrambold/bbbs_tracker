@@ -72,4 +72,46 @@ class Contact < ApplicationRecord
     end
   end
 
+  def has_been_year?
+    (Date.today << 12) < match.start
+  end
+
+  def parse_update(values)
+    if values.has_key?(:contact_due)
+      if has_been_year?
+        {:contact_due=>(Date.parse(values[:contact_due]) >> 1), :person=>'Little and Parent/Guardian'}
+      else
+        parsed = {:contact_due=>(Date.parse(values[:contact_due]) >> 3)}
+        if person == 'Big'
+          parsed[:person] = 'Big'
+        elsif person == 'Little'
+          parsed[:person] = 'Parent/Guardian'
+        else
+          parsed[:person] = 'Little'
+        end
+        values
+      end
+    elsif values.has_key?(:sor)
+      if Date.parse(values[:sor]) < (match.start >> 11)
+        {:sor=>(match.start >> 12)}
+      else
+        {:sor=>(Date.parse(values[:sor]) >> 12)}
+      end
+    elsif values.has_key?(:yos)
+      if Date.parse(values[:yos]) < (match.start >> 11)
+        {:yos=>(match.start >> 12)}
+      else
+        {:yos=>(Date.parse(values[:yos]) >> 12)}
+      end
+    elsif values.has_key?(:training)
+      if values[:training]
+        {:training=>true}
+      else
+        {:training=>false}
+      end
+    elsif values.has_key?(:driving)
+      {:driving=>(Date.parse(values[:driving]) >> 12)}
+    end
+  end
+
 end
