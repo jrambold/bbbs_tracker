@@ -1,2 +1,63 @@
-<%= @user.name %>
+<h1><%= @user.name %>'s Profile</h1>
 <%= link_to "Matches", user_matches_path(@user) %>
+<ul>
+  <li>Due this Month: <%= @due_amount[0] %></li>
+  <li>Due next Month: <%= @due_amount[1] %></li>
+  <li>Due in 2 Months: <%= @due_amount[2] %></li>
+  <li>Due in 3 Months: <%= @due_amount[3] %></li>
+</ul>
+<h4>Due this Month</h4>
+<% @contacts.each do |contact| %>
+  <ul>
+    <% dues = contact.due_by_month?(0) %>
+    <% if dues %>
+      <li><%= link_to "Match", match_path(contact.match) %></li>
+      <li>Person: <%= contact.person %></li>
+    <% end %>
+    <% dues.each do |due| %>
+      <li><%= due %></li>
+    <% end %>
+  </ul>
+<% end %>
+<br>
+<h4>Due next Month</h4>
+<% @contacts.each do |contact| %>
+  <ul>
+    <% dues = contact.due_by_month?(1) %>
+    <% if dues %>
+      <li><%= link_to "Match", match_path(contact.match) %></li>
+      <li>Person: <%= contact.person %></li>
+    <% end %>
+    <% dues.each do |due| %>
+      <li><%= due %></li>
+    <% end %>
+  </ul>
+<% end %>
+<br>
+<h4>Due in 2 Months</h4>
+<% @contacts.each do |contact| %>
+  <ul>
+    <% dues = contact.due_by_month?(2) %>
+    <% if dues %>
+      <li><%= link_to "Match", match_path(contact.match) %></li>
+      <li>Person: <%= contact.person %></li>
+    <% end %>
+    <% dues.each do |due| %>
+      <li><%= due %></li>
+    <% end %>
+  </ul>
+<% end %>
+<br>
+<h4>Due in 3 Months</h4>
+<% @contacts.each do |contact| %>
+  <ul>
+    <% dues = contact.due_by_month?(3) %>
+    <% if dues %>
+      <li><%= link_to "Match", match_path(contact.match) %></li>
+      <li>Person: <%= contact.person %></li>
+    <% end %>
+    <% dues.each do |due| %>
+      <li><%= due %></li>
+    <% end %>
+  </ul>
+<% end %>

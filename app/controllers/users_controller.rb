@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    @contacts = Contact.all.to_a
+    @due_amount = [(@contacts.map { |contact| contact.due_by_month?(0) }).compact.count,
+                   (@contacts.map { |contact| contact.due_by_month?(1) }).compact.count,
+                   (@contacts.map { |contact| contact.due_by_month?(2) }).compact.count,
+                   (@contacts.map { |contact| contact.due_by_month?(3) }).compact.count]
   end
 
   def new
@@ -19,6 +24,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @contacts = (@user.matches.to_a.map { |match| match.contacts.to_a }).flatten
+    @due_amount = [(@contacts.map { |contact| contact.due_by_month?(0) }).compact.count,
+                   (@contacts.map { |contact| contact.due_by_month?(1) }).compact.count,
+                   (@contacts.map { |contact| contact.due_by_month?(2) }).compact.count,
+                   (@contacts.map { |contact| contact.due_by_month?(3) }).compact.count]
   end
 
   def edit

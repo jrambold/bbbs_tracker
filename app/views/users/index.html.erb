@@ -1,6 +1,13 @@
 <h1>All Users</h1>
+<ul>
 <% @users.each do |user| %>
-  <%= user.name %>
-  <%= user.username %>
-  <br>
+  <li><%= user.name %></li>
 <% end %>
+</ul>
+<h3>Total Contacts Due from all Users</h3>
+<ul>
+  <li>Due this Month: <%= @due_amount[0] %></li>
+  <li>Due next Month: <%= @due_amount[1] %></li>
+  <li>Due in 2 Months: <%= @due_amount[2] %></li>
+  <li>Due in 3 Months: <%= @due_amount[3] %></li>
+</ul>
